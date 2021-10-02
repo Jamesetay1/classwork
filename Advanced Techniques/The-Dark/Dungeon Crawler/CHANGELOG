@@ -1,0 +1,111 @@
+Assignment 1.01 - Dungeon Generation
+1/20/18 -
+
+Started the project.  Took a simple path to begin.
+Created the 2D array that will be our dungeoun. 
+Immediatley after created printMap() so that my dungeoun can be shown and I may debug easily.
+Then created the rooms by printing '.' in a block and separated it, placing coridors in the separations.
+
+TODO (Bug/Functionality) - Make the edges immutable.  I have been careful to avoid the edge and my PrintMap 
+makes sure all that the edges are rocks, but they are not truly immutable.
+
+1/21/18 - Fixed.
+-------------------------------------------------------------------------------------
+Assignment 1.02 - Dungeon Save/Load
+
+1/29/18 - Started with another students project 1.01 since mine was not very good and done lazily.
+Began project 2 by creating all the switches and empty methods.  Began on the save method but
+ran into an issue with not being able to find the proper file.  Always throws a seg fault.
+
+TODO (BUG) - Fix the directory throwing a seg fault when writing.  As if it is really isn't opening the file.
+
+1/30/18 - Fixed bug from last night, I just had the directory wrong.  I finished save and load functionality.
+Got over a problem where when saving and the loading (the next call) your own - it would rarely get a bus error after
+multiple calls, but would succeed on the next many times.  I tried this on multiple new saves,
+and there was no more issues after a small fix.  However, it was a pretty rare bug.
+I am willing to say this is fixed but I am not 100% guaranteeing it. If this happens just run it again. It will work.
+
+BUG - When loading # towards the bottom, it will not always print them. But the rooms will always load.
+--------------------------------------------------------------------------------------------------------
+
+Assignment 1.03 -- Weighted Paths
+
+2/12/18 -- Fixed Code that was broken from last week. Added GenPC and set up everything else (Methods needed,
+what will be called in main, blocks of 0s waiting to be filled with numbers).
+
+2/13/18 -- Start with figuring out how to make it work when tunneling is involved. Made a function that sets up
+all values to infinity. then calls a recursive function that works in every direction. Finally it exits and prints it out.
+Had to keep the weight in mind when tunneling ((hard/85)+1).  After this works pretty easily I got to work on the paths
+where things could not dig. For this I just kept in mind that going into a wall is not allowable (so only hardness of 0 is).
+Surpisingly, this also worked without much hassle.
+
+FIXED BUG -- Was skipping out on a set of numbers because of their ascii value - fixed due to odd knowledge of ascii quickly.
+
+-----------------------------------------------------------------------------------------------------------
+Assignment 1.04 -- Scary Monsters!
+
+2/19/18 -- Began the project.  Took PC and let him move around randomly.  Then made methods for the monsters to
+follow the shortest path map made last week.  They either look for a smaller number, given if they are a tunneling
+monster or not, in that respective array.  They are not the smartest, but move towards the player.
+
+2/20/18 -- Made the method that controls whos turn it is,using an array that controls priority
+then lets them take their turn. Added print and sleep to after the player moves.
+Also fixed up main so that it would take the number of monsters specificed
+and then keep going until the game is over.
+
+Fixed Bug -- If two monsters try to take eachother spots it entered an inf loop.
+--------------------------------------------------------------------------------------------------------
+Assignment 1.05 -- Now we're playing (with a keyboard!)
+
+2/23/18 -- Got ncurses in and made that print the dungeon to the screen instead.  Put stairs in the dungeon, and what happens
+when you go up or down them.  Redid my gameControl so it would work better with a player controlled by the keyboard. 
+Got Monsterlist to open, be correct, and close.
+
+2/24/18 -- Learned how to take inputs from the keyboard. Used this to move the character, show the mosnterlist, and
+go up and down the stairs. I changed main because it was getting to be too much.  I need to redo it and will after this 
+assignment before we get into C++.  for now just running ./dungeon will get you into the game.
+
+3/1/18 -- Got Monster List to Scroll and 'Quit' Implemented
+--------------------------------------------------------------------------------------------------------------
+Assignment 1.06 -- He can teleport!
+
+3/15/18 -- Converted to C++, remade make file.  Everything working fine with make and ./main to play
+
+3/18/18 -- add fog of war map and toggle.  Also added teleporting around the map. Pressing t once will put you in teleport mode.
+Pressing it agian will set you down.
+
+3/19/18 -- added random teleporting (must be teleporting first, will randomly set you down.
+BUG -- Can teleport out of bounds.
+
+3/20/18 -- BUG fixed. Can no longer tp out of bounds. All is working as expected.
+-------------------------------------------------------------------------------------------------------------------
+Assignment 1.07 -- Adding Monsters
+
+3/26/18 -- Today I added just one bit to main that called a function to read and print out everything. 
+first I did the basic checks and then I added all the reading in to variables. FInally I printed all the variables
+in the necessary order. That was it!.
+--------------------------------------------------------------------------------------------------------------------
+Assignment 1.08 -- Adding Monsters and Items in the Game
+
+4/2 -- Started. First got all the monsters in the game and working
+BUG-- Duplicates of some monsters supposed to be unique.
+4/3 -- Then put the items in the game, and the ability to pick them up
+BUG FIX -- Duplicates of Monsters fixed.
+--------------------------------------------------------------------------------------------------
+Assignment 1.09 -- Using Items
+
+4/9 -- Started. Added all of the items slots to the PC.  Added the commands for items including put on()
+takeOff() describe() expunge() dropItem().
+BUG -- Again, Duplicates of Items appear often.
+BUG FIX -- Items no longer duplicate when adding/dropping etc.
+4/10 -- Added updates for the combat and inspectMon(). I also let the player always get the first move. 
+This did not always happen before, but not that we are fighing I figured it should.
+Added the Boss and Win condition.
+-------------------------------------------------------------------------------------------------------
+Assignment 1.10 -- Fleshed out Menu System.
+
+4/13 -- Began The Menu. Made is possible to Go back and forth between screens. 
+I then added Rules, Controls, and About information so that others playing
+can actually know what to do.  Play will begin the game and Exit will close the game.
+BUG -- Big bug involving the game not ending because of the new menu loop system.
+4/15

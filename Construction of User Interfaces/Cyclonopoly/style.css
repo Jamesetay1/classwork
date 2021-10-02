@@ -1,0 +1,322 @@
+
+
+.board{
+display: grid;
+justify-content: center;
+align-content: center;
+grid-gap: 2vmin;
+grid-template-columns: repeat(11, 14vmin);
+grid-template-rows: repeat(11, 14vmin);
+
+}
+/* change size of boxes by changing 10vmin values*/
+
+
+
+
+
+.square:nth-child(1) {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.square:nth-child(2) {
+  grid-row: 1;
+  grid-column: 2;
+  background-color: saddleBrown;
+}
+
+.square:nth-child(3) {
+  grid-row: 1;
+  grid-column: 3;
+}
+
+.square:nth-child(4) {
+  grid-row: 1;
+  grid-column: 4;
+  background-color: saddleBrown;
+}
+
+.square:nth-child(5) {
+  grid-row: 1;
+  grid-column: 5;
+}
+
+
+.square:nth-child(6) {
+  grid-row: 1;
+  grid-column: 6;
+}
+
+.square:nth-child(7) {
+  grid-row: 1;
+  grid-column: 7;
+  background-color: SkyBlue;
+}
+
+.square:nth-child(8) {
+  grid-row: 1;
+  grid-column: 8;
+}
+
+.square:nth-child(9) {
+  grid-row: 1;
+  grid-column: 9;
+  background-color: SkyBlue;
+}
+
+.square:nth-child(10) {
+  grid-row: 1;
+  grid-column: 10;
+  background-color: SkyBlue;
+}
+
+.square:nth-child(11) {
+  grid-row: 1;
+  grid-column: 11;
+}
+
+
+
+
+
+.square:nth-child(12) {
+  grid-row: 2;
+  grid-column: 11;
+  background-color: DarkOrchid;
+}
+
+.square:nth-child(13) {
+  grid-row: 3;
+  grid-column: 11;
+}
+
+.square:nth-child(14) {
+  grid-row: 4;
+  grid-column: 11;
+  background-color: DarkOrchid;
+}
+
+.square:nth-child(15) {
+  grid-row: 5;
+  grid-column: 11;
+  background-color: DarkOrchid;
+}
+
+.square:nth-child(16) {
+  grid-row: 6;
+  grid-column: 11;
+}
+
+.square:nth-child(17) {
+  grid-row: 7;
+  grid-column: 11;
+  background-color: Orange;
+}
+
+.square:nth-child(18) {
+  grid-row: 8;
+  grid-column: 11;
+}
+
+.square:nth-child(19) {
+  grid-row: 9;
+  grid-column: 11;
+  background-color: Orange;
+}
+.square:nth-child(20) {
+  grid-row: 10;
+  grid-column: 11;
+  background-color: Orange;
+}
+
+
+.square:nth-child(21) {
+  grid-row: 11;
+  grid-column: 11;
+}
+
+.square:nth-child(22) {
+  grid-row: 11;
+  grid-column: 10;
+  background-color: Red;
+}
+
+.square:nth-child(23) {
+  grid-row: 11;
+  grid-column: 9;
+}
+
+
+.square:nth-child(24) {
+  grid-row: 11;
+  grid-column: 8;
+  background-color: Red;
+}
+
+.square:nth-child(25) {
+  grid-row: 11;
+  grid-column: 7;
+  background-color: Red;
+}
+
+.square:nth-child(26) {
+  grid-row: 11;
+  grid-column: 6;
+}
+
+.square:nth-child(27) {
+  grid-row: 11;
+  grid-column: 5;
+  background-color: Yellow;
+}
+
+.square:nth-child(28) {
+  grid-row: 11;
+  grid-column: 4;
+  background-color: Yellow;
+}
+
+.square:nth-child(29) {
+  grid-row: 11;
+  grid-column: 3;
+}
+
+
+.square:nth-child(30) {
+  grid-row: 11;
+  grid-column: 2;
+  background-color: Yellow;
+}
+
+.square:nth-child(31) {
+  grid-row: 11;
+  grid-column: 1;
+}
+
+.square:nth-child(32) {
+  grid-row: 10;
+  grid-column: 1;
+  background-color: Green;
+}
+
+
+.square:nth-child(33) {
+  grid-row: 9;
+  grid-column: 1;
+  background-color: Green;
+}
+
+
+.square:nth-child(34) {
+  grid-row: 8;
+  grid-column: 1;
+}
+
+
+.square:nth-child(35) {
+  grid-row: 7;
+  grid-column: 1;
+  background-color: Green;
+}
+
+
+.square:nth-child(36) {
+  grid-row: 6;
+  grid-column: 1;
+}
+
+.square:nth-child(37) {
+  grid-row: 5;
+  grid-column: 1;
+}
+
+
+.square:nth-child(38) {
+  grid-row: 4;
+  grid-column: 1;
+  background-color: Blue;
+}
+
+
+.square:nth-child(39) {
+  grid-row: 3;
+  grid-column: 1;
+}
+
+.square:nth-child(40) {
+  grid-row: 2;
+  grid-column: 1;
+  background-color: Blue;
+}
+
+.square:nth-child(41) {
+  grid-row-start: 2;
+  grid-row-end: 11;
+  grid-column-start: 2;
+  grid-column-end: 11;
+
+}
+
+.board {
+  padding: 1em 0;
+}
+
+
+
+.square {
+  background: #eaeaea;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.card-popup {
+  text-align: center;
+}
+
+
+.dice1 {
+    width: 32px;
+    float: right;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+
+.diceroll
+{
+	float: right;
+}
+
+#wrapper{
+    position: relative;
+    height: 14vmin;
+    width: 14vmin;
+}
+
+.content{
+    color: #FFFFFF;
+    font-size: 26px;
+    font-weight: bold;
+    text-shadow: -1px -1px 1px #000, 1px 1px 1px #000;
+    position: relative;
+    z-index: 100;
+}
+
+.background{
+    color: #999999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 14vmin;
+    width: 14vmin;
+}

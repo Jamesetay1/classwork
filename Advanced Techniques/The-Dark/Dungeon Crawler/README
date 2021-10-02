@@ -1,0 +1,9 @@
+To Play "The Dark":
+
+1. Make sure you have downloaded both the DungeonCrawler and rlg327 folders. 
+2. Put them in the home enivroment of your system.
+3. Navigate to Dungeon Crawler Folder
+4. Call make
+5. Do ./main
+
+Game Instructions appear once playing the game.

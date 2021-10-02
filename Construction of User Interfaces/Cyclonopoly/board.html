@@ -1,0 +1,398 @@
+<link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="js/board.js"></script>
+<script type="text/javascript" src="js/property.js"></script>
+<script type="text/javascript" src="js/player.js"></script>
+<link rel="stylesheet" type="text/css" href="js/bootstrap/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/bootstrap/js/bootbox.min.js"></script>
+<script src="js/jquery/jquery-3.3.1.min.js"></script>
+
+<body onload="gameSetup()">
+
+<p id="playersList" align = "left"></p>
+<p id="player1" align = "left"></p>
+<p id="player2" align = "left"></p>
+<p id="player3" align = "left"></p>
+<p id="player4" align = "left"></p>
+<p id="player5" align = "left"></p>
+<p id="player6" align = "left"></p>
+<p id="player7" align = "left"></p>
+<p id="player8" align = "left"></p>
+
+<p id="dice">
+
+<!--<div id = "diceside1" class = "dice1">0</div>
+<div id = "diceside2" class = "dice1">0</div> -->
+<button type= "button" id="btn_roll" class ="btn" style="float:center" onclick = "rollDiceV2()" align="right">Roll Dice</Button>
+
+</p>
+
+<div class="board" align = "center">
+  <div class="square" onclick="lookupTile(1)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_1">
+		</div>
+		<div class="background">
+			<img src="img/Go.JPG" alt="Go. Collect $200" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(2)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_2">
+		</div>
+		<div class="background">
+			<img src="img/Campustown.JPG" alt="Go" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(3)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_3">
+		</div>
+		<div class="background">
+			<img src="img/CampusMail.JPG" alt="Campus Mail" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(4)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_4">
+		</div>
+		<div class="background">
+			<img src="img/CentralCampus.JPG" alt="Central Campus" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(5)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_5">
+		</div>
+		<div class="background">
+			<img src="img/TuitionIncrease.JPG" alt="Tuition Increase Pay $200" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(6)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_6">
+		</div>
+		<div class="background">
+			<img src="img/WelchAvenue.JPG" alt="Welch Avenue" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(7)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_7">
+		</div>
+		<div class="background">
+			<img src="img/IowaStateDaily.JPG" alt="Iowa State Daily" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(8)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_8">
+		</div>
+		<div class="background">
+			<img src="img/ContingencyCard.JPG" alt="Contingency Card" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(9)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_9">
+		</div>
+		<div class="background">
+			<img src="img/Kure.JPG" alt="KURE 88.5" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(10)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_10">
+		</div>
+		<div class="background">
+			<img src="img/CycloneFanatic.JPG" alt="Cyclone Fanatic" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(11)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_11">
+		</div>
+		<div class="background">
+			<img src="img/HomeWeekend.JPG" alt="Home. Visiting on Weekend" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(12)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_12">
+		</div>
+		<div class="background">
+			<img src="img/ReimanGardens.JPG" alt="Reiman Gardens" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(13)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_13">
+		</div>
+		<div class="background">
+			<img src="img/Cy.JPG" alt="Cy" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(14)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_14">
+		</div>
+		<div class="background">
+			<img src="img/MorrillHall.JPG" alt="Morrill Hall" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(15)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_15">
+		</div>
+		<div class="background">
+			<img src="img/CYStephensAuditorium.JPG" alt="CY Stephens Auditorium" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(16)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_16">
+		</div>
+		<div class="background">
+			<img src="img/LincolnWay.JPG" alt="Lincoln Way" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(17)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_17">
+		</div>
+		<div class="background">
+			<img src="img/MarstonWaterTower.JPG" alt="Marston Water Tower" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(18)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_18">
+		</div>
+		<div class="background">
+			<img src="img/CampusMail.JPG" alt="Campus Mail" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(19)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_19">
+		</div>
+		<div class="background">
+			<img src="img/LakeLaverne.JPG" alt="Lake Laverne" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(20)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_20">
+		</div>
+		<div class="background">
+			<img src="img/Campanile.JPG" alt="Campanile" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(21)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_21">
+		</div>
+		<div class="background">
+			<img src="img/SpringBreak.JPG" alt="Spring Break" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(22)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_22">
+		</div>
+		<div class="background">
+			<img src="img/TheHub.JPG" alt="The Hub" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(23)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_23">
+		</div>
+		<div class="background">
+			<img src="img/ContingencyCard.JPG" alt="Contingency Card" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(24)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_24">
+		</div>
+		<div class="background">
+			<img src="img/MShop.JPG" alt="The Maintenance Shop" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(25)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_25">
+		</div>
+		<div class="background">
+			<img src="img/FarmHouse.JPG" alt="The Hub" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(26)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_26">
+		</div>
+		<div class="background">
+			<img src="img/UnionDrive.JPG" alt="Union Drive" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(27)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_27">
+		</div>
+		<div class="background">
+			<img src="img/HiltonColiseum.JPG" alt="Hilton Coliseum" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(28)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_28">
+		</div>
+		<div class="background">
+			<img src="img/JackTriceStadium.JPG" alt="Jack Trice Stadium" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(29)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_29">
+		</div>
+		<div class="background">
+			<img src="img/LancelotAndElaine.JPG" alt="Lancelot and Elaine" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(30)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_30">
+		</div>
+		<div class="background">
+			<img src="img/StateGym.JPG" alt="State Gym" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(31)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_31">
+		</div>
+		<div class="background">
+			<img src="img/AcademicProbation.JPG" alt="Academic Probation" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(32)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_32">
+		</div>
+		<div class="background">
+			<img src="img/ParksLibrary.JPG" alt="Parks Library" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(33)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_33">
+		</div>
+		<div class="background">
+			<img src="img/MemorialUnion.JPG" alt="Memorial Union" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(34)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_34">
+		</div>
+		<div class="background">
+			<img src="img/CampusMail.JPG" alt="Campus Mail" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(35)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_35">
+		</div>
+		<div class="background">
+			<img src="img/Armory.JPG" alt="Armory" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(36)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_36">
+		</div>
+		<div class="background">
+			<img src="img/DuffAvenue.JPG" alt="Duff Avenue" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(37)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_37">
+		</div>
+		<div class="background">
+			<img src="img/ContingencyCard.JPG" alt="Contingency Card" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(38)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_38">
+		</div>
+		<div class="background">
+			<img src="img/CurtissHall.JPG" alt="Curtiss Hall" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(39)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_39">
+		</div>
+		<div class="background">
+			<img src="img/ParkingTicket.JPG" alt="Parking Ticket" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square" onclick="lookupTile(40)">
+	<div id="wrapper">
+		<div class="content" id = "div_foreground_40">
+		</div>
+		<div class="background">
+			<img src="img/BeardshearHall.JPG" alt="Beardshear Hall" style="height: 14vmin; width: 14vmin">
+		</div>
+	</div>
+  </div>
+  <div class="square">
+      <img src="img/innerboard.jpg" alt="Cyclonopoly" style="height: 142vmin; width: 142vmin">
+  </div>
+</div>
+<button type= "button" id="btn_save" class ="btn" style="float:right" onclick = "saveGame()" align="right">save</Button>
+  <button type= "button" id="btn_load" class ="btn" style="float:right" onclick = "loadGame()" align="right">load</Button>
+</body>
