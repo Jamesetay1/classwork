@@ -1,0 +1,153 @@
+CS124 Group Exercise - Unix for Poets
+Solutions provided by Kevin McKenzie and Jade Huang
+
+# extended counting exercises
+
+- Merge upper and lower case by down casing everything (use tr a second time)
+
+tr -sc 'A-Za-z' '\n' < nyt_200811.txt | tr 'A-Z' 'a-z' | sort | uniq -c
+
+tr -sc 'A-Za-z' '\n' < nyt_200811.txt | tr '[:upper:]' '[:lower:]' | sort | uniq -c
+
+1. tokenize by replacing the complement of letters with newlines (takes care of \s* with -s which squeezes repeats)
+2. replace all uppercase with lowercase
+3. sort alphabetically
+4. merge duplicates and show counts
+
+- How common are different sequences of vowels, e.g., "ieu" (use tr a second time)
+
+tr -sc 'A-Za-z' '\n' < nyt_200811.txt | tr 'A-Z' 'a-z' | tr -sc 'aeiou' '\n' | sort | uniq -c
+
+1. tokenize by replacing the complement of letters with newlines
+2. replace all uppercase with lowercase
+3. replace the complement of vowels with newlines (preserve vowels that are originally together and consider vowel sequences as words)
+4. sort alphabetically
+5. merge duplicates and show counts
+
+# counting and sorting exercises
+
+- Find the 50 most common words in the NYT (use sort a second time, then head)
+
+tr -sc 'A-Za-z' '\n' < nyt_200811.txt | sort | uniq -c | sort -nr | head -n 50
+
+1. tokenize by replacing the complement of letters with newlines
+2. sort alphabetically
+3. merge duplicates and show counts
+4. sort numerically (i.e. by the counts) and in descending/reverse order
+5. show the top 50
+
+- Find the words in the NYT that end in "zz"
+
+tr -sc 'A-Za-z' '\n' < nyt_200811.txt | tr 'A-Z' 'a-z' | rev | sort | uniq -c | rev | tail -n 10
+1. tokenize by replacing the complement of letters with newlines
+2. reverse all words
+3. sort alphabetically (words ending in "zz" are at the end)
+4. reverse all words again so they are normal
+5. show the last several words just to peek at the file to see which ones end in "zz"
+
+Alternatively, could use grep to specifically find the words that end in "zz".
+tr -sc 'A-Za-z' '\n' < nyt_200811.txt | tr "[:upper:]" "[:lower:]" | sort | uniq -c | sort -rn | grep '[a-z]*zz$' | head -n 50
+
+- Get all bigrams
+tr -sc 'A-Za-z' '\n' < nyt_200811.txt > nyt.words
+tail -n +2 nyt.words > nyt.nextwords
+paste nyt.words nyt.nextwords > nyt.bigrams
+head -n 5 nyt.bigrams
+
+1. tokenize
+2. output lines starting with the 2nd line to nyt.nextwords (these are words_{i+1})
+3. write lines of the sequentially corresponding lines from nyt.words (words_i) and nyt.nextwords (words_{i+1}) separated by tabs
+4. Peek at the first 5
+
+# bigrams and trigrams exercises
+
+- Find the 10 most common bigrams
+tr 'A-Z' 'a-z' < nyt.bigrams | sort | uniq -c | sort -nr | head -n 10
+
+cat nyt.bigrams | tr "[:upper:]" "[:lower:]" | sort | uniq -c | sort -rn | head -n 10
+
+1. lowercase bigrams
+2. sort alphabetically
+3. count 
+4. sort in descending order by number
+5. look at top 10
+
+- Find the 10 most common trigrams
+tail -n +3 nyt.words > nyt.thirdwords
+paste nyt.words nyt.nextwords nyt.thirdwords > nyt.trigrams
+cat nyt.trigrams | tr "[:upper:]" "[:lower:]" | sort | uniq -c | sort -rn | head -n 10
+
+1. output lines starting with the 3rd line to nyt.thirdwords (these are words_{i+2})
+2. write words_i words_{i+1} words_{i+2}
+3. lowercase
+4. sort alphabetically
+5. count
+6. sort in descending order by number
+7. look at top 10
+
+tail -n +2 nyt.nextwords > nyt.nextnextwords
+paste nyt.words nyt.nextwords nyt.nextnextwords > nyt.trigrams
+cat nyt.trigrams | tr "[:upper:]" "[:lower:]" | sort | uniq -c | sort -rn | head -n 10
+
+# grep and wc exercises
+
+- How many all uppercase words are there in this NYT file?
+grep -E '^[A-Z]+$' nyt.words | wc
+
+Answer:  8604
+
+1. look for words that start capitalized, are 1 capitalized letter or more, and end capitalized.
+2. word count
+
+- How many 4-letter words?
+grep -E '^[a-zA-Z]{4}$' nyt.words | wc
+grep -E '^[A-Za-z][A-Za-z][A-Za-z][A-Za-z]$' nyt.words | wc
+
+Answer: 86943
+
+- How many different words are there with no vowels
+
+grep -v '[AEIOUaeiou]' nyt.words | sort | uniq | wc
+
+1. keep lines not containing vowels
+2. sort
+3. merge duplicates
+4. count words
+Answer: 318
+
+- How many "1 syllable" words are there (i.e. words with exactly one vowel)
+
+tr 'A-Z' 'a-z' < nyt.words | grep -E '^[^aeiou]*[aeiou]+[^aeiou]*$' | uniq | wc
+
+Answer: 286109
+
+1. match words that may or may not start with a non-vowel, contains one sequence of vowels (e.g. ball, beat), and that may or may not end a non-vowel.
+2. merge duplicates
+3. count words
+
+tr "[:upper:]" "[:lower:]" < nyt.words | grep -v '.*[aeiou].*[aeiou].*' | uniq | wc
+
+Answer: 250659
+Jade: I think .* is too lenient--should specify non-vowels instead of wildcard. Also potentially could match words with more than one syllable like ballast.
+
+# sed exercises
+
+- Count frequency of word initial consonant sequences
+
+tr "[:upper:]" "[:lower:]" < nyt.words | sed 's/[aeiou].*//' | sort | uniq -c | sort -rn | less
+
+1. tokenize
+2. delete first vowel through end of the word
+3. sort and count
+
+(total of 540 sequences when ignoring case)
+
+- Count word final consonant sequences
+tr "[:upper:]" "[:lower:]" < nyt.words | rev | sed 's/[aeiou].*$//' | sort | uniq -c | rev
+
+tr "[:upper:]" "[:lower:]" < nyt.words | sed 's/^.*[aeiou]//' | sort | uniq -c | sort -rn | less
+
+Can reverse words before deleting first vowel through end of the word OR can delete from beginning of the word to the first vowel.
+
+(total of 661 sequences)
+
