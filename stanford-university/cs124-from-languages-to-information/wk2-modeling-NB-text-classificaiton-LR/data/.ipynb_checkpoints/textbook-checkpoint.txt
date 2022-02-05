@@ -1,0 +1,26 @@
+An (intrinsic) improvement in perplexity does not guarantee an (extrinsic) improvement in the performance of a language processing task like speech recognition
+or machine translation. Nonetheless, because perplexity often correlates with such
+improvements, it is commonly used as a quick check on an algorithm. But a model’s
+improvement in perplexity should always be confirmed by an end-to-end evaluation
+of a real task before concluding the evaluation of the model. The n-gram model, like many statistical models, is dependent on the training corpus
+
+One implication of this is that the probabilities often encode specific facts about a
+given training corpus. Another implication is that n-grams do a better and better job
+of modeling the training corpus as we increase the value of N. In order for a backoff model to give a correct probability distribution, we have
+discount to discount the higher-order n-grams to save some probability mass for the lower
+order n-grams. Just as with add-one smoothing, if the higher-order n-grams aren’t
+discounted and we just used the undiscounted MLE probability, then as soon as we
+replaced an n-gram which has zero probability with a lower-order n-gram, we would
+be adding probability mass, and the total probability assigned to all possible strings
+by the language model would be greater than 1! In addition to this explicit discount
+factor, we’ll need a function α to distribute this probability mass to the lower order
+n-grams
+
+To see this, we can use a clever idea from Church and Gale (1991). Consider
+an n-gram that has count 4. We need to discount this count by some amount. But
+how much should we discount it? Church and Gale’s clever idea was to look at a
+held-out corpus and just see what the count is for all those bigrams that had count
+4 in the training set. They computed a bigram grammar from 22 million words of
+AP newswire and then checked the counts of each of these bigrams in another 22
+million words. On average, a bigram that occurred 4 times in the first 22 million
+words occurred 3.23 times in the next 22 million words
